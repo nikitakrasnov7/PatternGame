@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class RepairStateSpaceX : MonoBehaviour
+public class RepairStateSpaceX : SpaceXState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Attack()
     {
-        
+        // ничего
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Repair()
     {
-        
+        Debug.Log("супер репаир");
+    }
+
+    public override void Salvage()
+    {
+        // ничего
+    }
+
+    public override void Upgrade()
+    {
+        // ничего
     }
 }

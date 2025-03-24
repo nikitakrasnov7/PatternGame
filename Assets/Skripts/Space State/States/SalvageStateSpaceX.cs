@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SalvageStateSpaceX : MonoBehaviour
+public class SalvageStateSpaceX : SpaceXState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Attack()
     {
-        
+        // ничего
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Repair()
     {
-        
+        // ничего
+    }
+
+    public override void Salvage()
+    {
+        Debug.Log("супер салваге");
+    }
+
+    public override void Upgrade()
+    {
+        // ничего
     }
 }
