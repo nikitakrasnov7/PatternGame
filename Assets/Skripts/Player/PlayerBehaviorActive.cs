@@ -1,36 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerBehaviorActive : IPlayerBehavior
 {
+    PlayerFunction playerFunction = PlayerFunction.Instance;
     public void Enter()
     {
-        Debug.Log("хочу спааать");
+        playerFunction.AgentStarted();
+        Debug.Log(" Enter Active");
     }
 
     public void Exit()
     {
-        Debug.Log(" лег спать");
+        Debug.Log(" Exit Active");
     }
 
     public void Update()
     {
-        //if (GameDataSO.player.GetComponent<NavMeshAgent>() != null)
-        //{
-        //    if (GameDataSO.house != null)
-        //    {
-        //        GameObject house = GameDataSO.house.gameObject;
-        //        NavMeshAgent agent = GameDataSO.player.GetComponent<NavMeshAgent>();
-        //        agent.destination = house.transform.position;
+        Debug.Log(" update Active");
 
-                
+        playerFunction.AgentGoingToHouse();
+        playerFunction.AgentStopped(playerFunction.House);
 
-        //    }
-
-
-        //}
 
     }
 }

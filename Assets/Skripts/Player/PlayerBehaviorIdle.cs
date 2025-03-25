@@ -7,6 +7,7 @@ public class PlayerBehaviorIdle : IPlayerBehavior
     public void Enter()
     {
         Debug.Log(" Enter IDLE ");
+        PlayerFunction.Instance.AgentStarted();
     }
 
     public void Exit()
@@ -17,5 +18,7 @@ public class PlayerBehaviorIdle : IPlayerBehavior
     public void Update()
     {
         Debug.Log(" Update IDLE ");
+
+        PlayerFunction.Instance.RandomGoingAgent();
     }
 }

@@ -1,32 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
-    private float eatTime = 5f;
-    private float sleepTime = 5f;
+    private  float eatTime = 5f;
+    public  float sleepTime = 15f;
 
     private Dictionary<Type, IPlayerBehavior> behaviorMap;
     private IPlayerBehavior behaviorCurrent;
 
     public GameDataSO gameData;
+
     private void Start()
     {
         this.InitBehaviors();
         this.SetBehaviorByDefault();
-
-        //gameData.player = gameObject;
-        //gameData.house = GameObject.FindGameObjectWithTag("House").gameObject;
-        GameObject[] eats = GameObject.FindGameObjectsWithTag("Eats");
-        for (int i = 0; i < eats.Length; i++)
-        {
-            gameData.eats.Add(eats[i]);
-        }
-
-
     }
 
     private void InitBehaviors()
@@ -78,37 +70,52 @@ public class Player : MonoBehaviour
         return this.behaviorMap[type];
     }
 
+    private void Timer()
+    {
+
+        eatTime = eatTime >= 0 ? eatTime - Time.deltaTime : 0;
+        sleepTime = sleepTime >= 0 ? sleepTime - Time.deltaTime : 0;
+
+    }
+    private void AddingTimeToSleep()
+    {
+        sleepTime += 20f;
+    }
+    private void AddingTimeToEat()
+    {
+        eatTime += 10f;
+    }
+
+    public bool isSleep = true;
+
     private void Update()
     {
-        eatTime -= 0.01f;
-        sleepTime -= 0.01f;
+        Timer();
 
-        //float distation = Vector3.Distance(gameObject.transform.position, GameDataSO.house.transform.position);
-        //if (distation < 2) 
+        //if (eatTime < 2f)
         //{
-        //    sleepTime += 10f;
+        //    this.SetBehaviorIAggressive();
         //}
-
-
-        if (eatTime < 2f)
-        {
-            this.SetBehaviorIAggressive();
-        }
         if (sleepTime < 5f)
         {
-            this.SetBehaviorActive();
-        }
-        if ( sleepTime > 5f)
-        {
-            this.SetBehaviorIdle();
+            if (isSleep)
+            {
+                isSleep = false;
+                this.SetBehaviorActive();
+
+            }
+
         }
 
-        
+
+
 
         if (this.behaviorCurrent != null)
         {
             this.behaviorCurrent.Update();
         }
     }
+
+
 
 }
