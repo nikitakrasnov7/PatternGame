@@ -7,8 +7,8 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
-    private  float eatTime = 5f;
-    public  float sleepTime = 15f;
+    public float eatTime = 20f;
+    public float sleepTime = 15f;
 
     private Dictionary<Type, IPlayerBehavior> behaviorMap;
     private IPlayerBehavior behaviorCurrent;
@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
     }
 
     public bool isSleep = true;
+    public bool isEat = true;
 
     private void Update()
     {
@@ -106,6 +107,19 @@ public class Player : MonoBehaviour
             }
 
         }
+        if (eatTime <=0f)
+        {
+            if (isSleep)
+            {
+                if (isEat)
+                {
+                    isEat = false;
+                    this.SetBehaviorIAggressive();
+                }
+            }
+        }
+
+
 
 
 

@@ -412,7 +412,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.00086074555, y: -0.0031354572, z: 0.0044417726, w: 0.99998486}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5471, y: 1, z: 2.6188607}
+  m_LocalScale: {x: 8.395242, y: 1, z: 10.121897}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1098,9 +1098,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3e5a1e69d840541b3fbf7a2477fff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eatTime: 5
   sleepTime: 15
   gameData: {fileID: 11400000, guid: 7cba2404ef5a0e04e893e6eb9a571458, type: 2}
   isSleep: 1
+  isEat: 1
 --- !u!195 &1061702069
 NavMeshAgent:
   m_ObjectHideFlags: 0

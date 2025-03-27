@@ -12,6 +12,7 @@ public class PlayerFunction : MonoBehaviour
     public GameObject House;
 
     private NavMeshAgent agent;
+    private Player playerScript;
 
     public List<GameObject> Eats;
 
@@ -36,6 +37,7 @@ public class PlayerFunction : MonoBehaviour
         gameData.eats = Eats;
 
         agent = Player.GetComponent<NavMeshAgent>();
+        playerScript = Player.GetComponent<Player>();
     }
 
     public void AgentGoingToHouse()
@@ -49,6 +51,51 @@ public class PlayerFunction : MonoBehaviour
             }
         }
 
+    }
+
+
+    GameObject eat;
+    private bool isEats = true;
+
+    private void RandomEat()
+    {
+
+        eat = Eats[Random.Range(0, Eats.Count)];
+    }
+    public void AgentGoingToRandomEat()
+    {
+        if (Player.GetComponent<NavMeshAgent>() != null)
+        {
+            if (Eats != null)
+            {
+                if (isEats)
+                {
+                    isEats = false;
+                    RandomEat();
+                }
+                if (eat != null)
+                {
+                    agent.destination = eat.transform.position;
+
+
+                    float dis = Vector3.Distance(Player.transform.position, eat.transform.position);
+                    if (dis < 1.5)
+                    {
+                        Eats.Remove(eat);
+                        eat = null;
+                        playerScript.isEat = true;
+                        playerScript.eatTime = 20f;
+                    }
+                }
+                else
+                {
+                    RandomEat();
+                }
+
+
+
+            }
+        }
     }
 
     public void AgentStarted()
@@ -81,9 +128,10 @@ public class PlayerFunction : MonoBehaviour
         {
             test = true;
         }
-
-
-
+    }
+    public void ResetPointerPosition()
+    {
+        pointer = Player.transform.position;
     }
 
 

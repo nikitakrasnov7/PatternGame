@@ -8,6 +8,7 @@ public class PlayerBehaviorIdle : IPlayerBehavior
     {
         Debug.Log(" Enter IDLE ");
         PlayerFunction.Instance.AgentStarted();
+        PlayerFunction.Instance.ResetPointerPosition();
     }
 
     public void Exit()
